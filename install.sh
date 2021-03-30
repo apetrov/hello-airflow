@@ -8,11 +8,11 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 pip3 install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 pip3 install gunicorn
 
-export AIRFLOW=$HOME/.local/bin/airflow 
+export PATH=$PATH:~/.local/bin
 
-$AIRFLOW db init
+airflow db init
 
-$AIRFLOW users create --username admin --firstname admin --lastname admin --role Admin --email apetrov@hey-me.com
+airflow users create --username admin --firstname admin --lastname admin --role Admin --email apetrov@hey-me.com
 
-$AIRFLOW webserver --port 8080
+airflow webserver --port 8080
 
