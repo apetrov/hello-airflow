@@ -15,6 +15,7 @@ activate:
 
 install:
 	pip install "apache-airflow==$(AIRFLOW_VERSION)" --constraint "$(CONSTRAINT_URL)"
+	pip install apache-airflow-providers-postgres
 
 init:
 	echo "~/.local/bin expected to be in PATH"
