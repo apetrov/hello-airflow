@@ -2,6 +2,7 @@ AIRFLOW_HOME := ~/airflow
 AIRFLOW_VERSION = 2.0.1
 PYTHON_VERSION = $(shell python --version | cut -d " " -f 2 | cut -d "." -f 1-2)
 CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-$(AIRFLOW_VERSION)/constraints-$(PYTHON_VERSION).txt"
+VARIABLES = variables.json
 
 # Create Python venv
 venv:
@@ -20,6 +21,12 @@ init:
 	airflow db init
 	airflow users create --username admin --firstname admin --lastname admin --role Admin --email apetrov@hey-me.com
 
+export:
+	airflow variables export $(VARIABLES)
+
+import:
+	airflow variables import $(VARIABLES)
+
 link:
 	ln -s $(PWD)/dags $(AIRFLOW_HOME)/dags
 
@@ -31,4 +38,5 @@ scheduler:
 
 env:
 	echo $(AIRFLOW_HOME) $(AIRFLOW_VERSION) $(PYTHON_VERSION)
+
 
