@@ -16,6 +16,7 @@ install:
 	pip install "apache-airflow==$(AIRFLOW_VERSION)" --constraint "$(CONSTRAINT_URL)"
 
 init:
+	echo "~/.local/bin expected to be in PATH"
 	airflow db init
 	airflow users create --username admin --firstname admin --lastname admin --role Admin --email apetrov@hey-me.com
 
